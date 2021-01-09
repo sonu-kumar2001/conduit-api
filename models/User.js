@@ -8,6 +8,7 @@ let userSchema = new Schema({
     password: {type: String, required: true},
     bio: {type: String},
     image: {type: String},
+    following: [{type: Schema.Types.ObjectId, ref:"User"}]
 },{timestamps: true});
 
 userSchema.pre("save", function(next) {

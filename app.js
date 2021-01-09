@@ -7,6 +7,9 @@ let db = require("./db/config");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+let profileRouter = require("./routes/profile");
+
+const auth = require('./modules/config');
 
 //connect to database
 db.connect();
@@ -25,9 +28,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(auth.currentUserLoggedIn);
 
 app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/profiles',profileRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
