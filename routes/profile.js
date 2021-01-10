@@ -3,6 +3,7 @@ var router = express.Router();
 var auth = require("../modules/config");
 let User = require("../models/User");
 
+// getting user profile
 router.get("/:username" ,async (req,res,next)=> {
     try {
         let username = req.params.username;
@@ -15,7 +16,7 @@ router.get("/:username" ,async (req,res,next)=> {
     }
 });
 
-
+// following user
 router.post("/:username/follow",auth.verifyToken,async(req,res,next)=> {
     try {
         let username = req.params.username;
@@ -26,7 +27,7 @@ router.post("/:username/follow",auth.verifyToken,async(req,res,next)=> {
         next(error);
     }
 });
-
+// unfollowing user
 router.delete("/:username/follow",auth.verifyToken,async(req,res,next)=> {
     try {
         let username = req.params.username;
@@ -46,13 +47,5 @@ function userProfiles(user, currentUser = null) {
         following
     }
 }
-
-
-
-
-
-
-
-
 
 module.exports = router;

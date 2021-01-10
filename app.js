@@ -33,6 +33,8 @@ app.use(auth.currentUserLoggedIn);
 app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/profiles',profileRouter);
+app.use('/api/articles',require("./routes/article"));
+app.use('/api/tags',require("./routes/tags"));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
